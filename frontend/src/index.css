@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-body text-obsidian bg-white;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { @apply bg-gold/30 text-obsidian; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-gray-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-gold/60 rounded-full; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-obsidian text-ivory font-body font-medium
+           px-6 py-3 tracking-wider uppercase text-sm transition-all duration-300
+           hover:bg-gold hover:text-obsidian active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-obsidian font-body font-medium
+           px-6 py-3 tracking-wider uppercase text-sm transition-all duration-300
+           hover:bg-gold-dark active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-obsidian text-obsidian font-body font-medium
+           px-6 py-3 tracking-wider uppercase text-sm transition-all duration-300
+           hover:bg-obsidian hover:text-ivory active:scale-95;
+  }
+  .card {
+    @apply bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover;
+  }
+  .input-field {
+    @apply w-full border border-gray-200 px-4 py-3 text-sm outline-none 
+           focus:border-gold focus:ring-1 focus:ring-gold/30 transition-all duration-200
+           bg-white placeholder-gray-400;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-semibold text-obsidian;
+  }
+  .gold-text {
+    @apply text-gold font-display italic;
+  }
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 
+           bg-[length:200%_100%] animate-shimmer;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 text-xs font-medium tracking-wide uppercase;
+  }
+  .badge-gold {
+    @apply badge bg-gold/10 text-gold border border-gold/20;
+  }
+  .badge-success { @apply badge bg-green-50 text-green-700 border border-green-200; }
+  .badge-warning { @apply badge bg-amber-50 text-amber-700 border border-amber-200; }
+  .badge-info    { @apply badge bg-blue-50 text-blue-700 border border-blue-200; }
+  .badge-error   { @apply badge bg-red-50 text-red-700 border border-red-200; }
+}
