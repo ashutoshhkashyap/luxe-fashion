@@ -101,7 +101,7 @@ const AdminOrders = () => {
                     <td className="px-4 py-3">
                       <select
                         value={order.status}
-                        onChange={e => handleStatusChange(order.order_number, e.target.value)}
+                        onChange={e => handleStatusChange(order.id, e.target.value)}
                         className={`text-xs border border-gray-200 rounded px-2 py-1 font-body bg-white cursor-pointer focus:outline-none focus:border-gold`}
                       >
                         {statusOptions.map(s => (
