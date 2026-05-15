@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'https://luxe-fashion-backend-production-2936.up.railway.app/api' });
+const API = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
 
 // Attach JWT token to every request
 API.interceptors.request.use((config) => {
@@ -26,7 +26,7 @@ API.interceptors.response.use(
 );
 
 // Admin API — different token
-const AdminAPI = axios.create({ baseURL: 'https://luxe-fashion-backend-production-2936.up.railway.app/api' });
+const AdminAPI = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
 AdminAPI.interceptors.request.use((config) => {
   const token = localStorage.getItem('luxe_admin_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
