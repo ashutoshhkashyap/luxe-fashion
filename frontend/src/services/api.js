@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
+const API = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api',
+withCredentials: true });
 
 // Attach JWT token to every request
 API.interceptors.request.use((config) => {
@@ -26,7 +27,8 @@ API.interceptors.response.use(
 );
 
 // Admin API — different token
-const AdminAPI = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
+const AdminAPI = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api',
+withCredentials: true });
 AdminAPI.interceptors.request.use((config) => {
   const token = localStorage.getItem('luxe_admin_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -89,3 +91,7 @@ export const wishlistService = {
   get:    ()     => API.get('/wishlist'),
   toggle: (pid)  => API.post('/wishlist/toggle', { product_id: pid }),
 };
+getMe:       ()  => API.get('/auth/me'),
+getAdminMe:  ()  => AdminAPI.get('/auth/admin/me'),
+logout:      ()  => API.post('/auth/logout'),
+adminLogout: ()  => AdminAPI.post('/auth/admin/logout'),
